@@ -32,7 +32,16 @@ function createRepositoryItem(event) {
 
   const metadata = document.createElement("p");
   metadata.className = "repository-meta";
-  metadata.innerHTML = `<span>${event.repository.language}</span><span>${formatStars(event.repository.stars)} stars</span><span>Starred ${formatDate(event.starredAt)}</span>`;
+  const language = document.createElement("span");
+  language.textContent = event.repository.language;
+
+  const stars = document.createElement("span");
+  stars.textContent = `${formatStars(event.repository.stars)} stars`;
+
+  const starredDate = document.createElement("span");
+  starredDate.textContent = `Starred ${formatDate(event.starredAt)}`;
+
+  metadata.append(language, stars, starredDate);
 
   item.append(link, description, metadata);
   return item;
